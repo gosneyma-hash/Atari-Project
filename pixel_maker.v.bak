@@ -1,0 +1,89 @@
+module pixel_maker( 
+    input wire clk,   // 50 mhz clock
+    input wire video_on, // if it is within the screen 640 -480
+    
+    input wire [9:0] x, // the x position of the object
+    input wire [9:0] y, // the y position of the onject 
+
+    input wire [9:0] paddle_x, // the paddles x position
+    input wire [9:0] paddle_y,
+    // balls x and y position
+    input wire [9:0] ball_x,
+    input wire [9:0] ball_y,
+
+    // brick states
+    input wire [4:0] current_brick_state,
+
+    //colors red green blue for the pixels
+    output reg [7:0] VGA_R, // red
+    output reg [7:0] VGA_G, // green
+    output reg [7:0] VGA_B // blue
+);
+
+
+// paddle defintions of size and location
+parameter PADDLE_WIDTH = 32; // PADDLE IS 32 PIXELS WIDE
+parameter PADDLE_HEIGHT = 8;
+
+// SETTING THE BALL SIZE
+parameter BALL_SIZE = 6;
+
+
+// brick sizes
+parameter BRICK_WIDTH = 64; 
+parameter BRICK_HEIGHT = 32;
+
+// colors
+    // black
+        //VGA_R = 8'b00000000;
+        // VGA_G = 8'b00000000;
+        //VGA_B = 8'b00000000;
+    // white 
+        // VGA_R = 8'b11111111;
+        // VGA_G = 8'b11111111;
+        // VGA_B = 8'b11111111;
+
+always @ (*) begin
+    if(!video_on) begin
+        // if it is not inbounds it goes to black
+        VGA_R = 8'b00000000;
+        VGA_G = 8'b00000000;
+        VGA_B = 8'b00000000;
+
+    end
+
+
+    // pixels for the paddles
+        //Width
+            // x >= paddle_x checks if the pixels on the left edge
+            // x< (paddle_x + PADDLE_WIDTH) checks the pixels on the right edge
+        //Height
+        // y >= paddle_y pixes at the top edge
+        // y < (paddle_y + PADDLE_HEIGHT) pixels ar the bottom edge
+
+    else if((x >= paddle_x) && (x<( paddle_x + PADDLE_WIDTH)) && (y >= paddle_y) && (y < (paddle_y + PADDLE_HEIGHT))) begin
+        VGA_R = 8'b11111111;
+        VGA_G = 8'b11111111;
+        VGA_B = 8'b11111111;
+    end 
+    // same thing as paddle except for the ball
+    else if ((x >= ball_x) && (x<( ball_x + BALL_SIZE)) && (y >= ball_y) && (y < (ball_y + BALL_SIZE))) begin
+        // makes the ball white
+        VGA_R = 8'b11111111;
+        VGA_G = 8'b11111111;
+        VGA_B = 8'b11111111;
+    end 
+    //backGround default black could change it to blue depends on other colors though
+    else begin
+        VGA_R = 8'b00000000;
+        VGA_G = 8'b00000000;
+        VGA_B = 8'b00000000;
+    end
+
+
+
+
+
+end
+
+endmodule

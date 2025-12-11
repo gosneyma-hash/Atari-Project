@@ -1,0 +1,56 @@
+// Paddle movement for DE1-SoC VGA
+// Uses KEY[0] and KEY[1] pushbuttons for left/right movement.
+// Paddle stays at bottom of screen.
+
+module paddle_move_DE1SOC #(
+    parameter SCREEN_WIDTH  = 640,
+    parameter SCREEN_HEIGHT = 480,
+    parameter PADDLE_WIDTH  = 64,
+    parameter PADDLE_HEIGHT = 8,
+    parameter PADDLE_Y      = 440,   // bottom row for paddle
+    parameter SPEED         = 4
+)(
+    input  wire        clk,       // 50 MHz system clock
+    input  wire        rst_n,     // active-low reset (KEY[3] often used)
+    input  wire [3:0]  KEY,       // pushbuttons: KEY[0]=left, KEY[1]=right
+    output reg  [15:0] paddle_x,  // left edge X position
+    output wire [15:0] paddle_y   // fixed Y position
+);
+
+    assign paddle_y = PADDLE_Y;
+
+    // Center paddle at start
+    localparam [15:0] START_X = (SCREEN_WIDTH - PADDLE_WIDTH) >> 1;
+
+    // Slow down movement using a divider (so paddle doesn’t move too fast)
+    reg [19:0] div;
+    wire tick = (div == 20'd0);
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            div      <= 20'd0;
+            paddle_x <= START_X;
+        end else begin
+            div <= div + 1'b1;
+
+            if (tick) begin
+                // KEY buttons are active-low on DE1-SoC
+                if (!KEY[0] && KEY[1]) begin
+                    // Move left
+                    if (paddle_x > SPEED)
+                        paddle_x <= paddle_x - SPEED;
+                    else
+                        paddle_x <= 16'd0;
+                end else if (!KEY[1] && KEY[0]) begin
+                    // Move right
+                    if (paddle_x + PADDLE_WIDTH + SPEED <= SCREEN_WIDTH)
+                        paddle_x <= paddle_x + SPEED;
+                    else
+                        paddle_x <= SCREEN_WIDTH - PADDLE_WIDTH;
+                end
+                // If both pressed or none pressed, hold position
+            end
+        end
+    end
+
+endmodule

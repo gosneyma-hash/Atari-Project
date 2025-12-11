@@ -1,0 +1,60 @@
+// Top-level module for Breakout-style paddle control on DE1-SoC
+// - Instantiates paddle movement logic
+// - Connects to pushbuttons (KEY) for left/right
+// - Exposes paddle coordinates for VGA rendering
+
+module breakout_top (
+    input  wire        CLOCK_50,   // 50 MHz system clock
+    input  wire [3:0]  KEY,        // pushbuttons: KEY[0]=left, KEY[1]=right, KEY[3]=reset
+    input  wire [9:0]  SW,         // switches (unused here, available for game options)
+    output wire [7:0]  VGA_R,      // VGA red
+    output wire [7:0]  VGA_G,      // VGA green
+    output wire [7:0]  VGA_B,      // VGA blue
+    output wire        VGA_HS,     // VGA horizontal sync
+    output wire        VGA_VS,     // VGA vertical sync
+    output wire        VGA_CLK,    // VGA clock
+    output wire        VGA_BLANK_N,
+    output wire        VGA_SYNC_N
+);
+
+    // Reset is active-low on DE1-SoC (KEY[3])
+    wire rst_n = KEY[3];
+
+    // Paddle coordinates
+    wire [15:0] paddle_x;
+    wire [15:0] paddle_y;
+
+    // Instantiate paddle movement logic
+    paddle_move_DE1SOC #(
+        .SCREEN_WIDTH(640),
+        .SCREEN_HEIGHT(480),
+        .PADDLE_WIDTH(64),
+        .PADDLE_HEIGHT(8),
+        .PADDLE_Y(440),
+        .SPEED(4)
+    ) paddle_inst (
+        .clk(CLOCK_50),
+        .rst_n(rst_n),
+        .KEY(KEY),
+        .paddle_x(paddle_x),
+        .paddle_y(paddle_y)
+    );
+
+    // VGA controller instantiation (simplified placeholder)
+    // You’ll replace this with your actual VGA timing generator.
+    vga_controller vga_inst (
+        .clk(CLOCK_50),
+        .rst_n(rst_n),
+        .paddle_x(paddle_x),
+        .paddle_y(paddle_y),
+        .VGA_R(VGA_R),
+        .VGA_G(VGA_G),
+        .VGA_B(VGA_B),
+        .VGA_HS(VGA_HS),
+        .VGA_VS(VGA_VS),
+        .VGA_CLK(VGA_CLK),
+        .VGA_BLANK_N(VGA_BLANK_N),
+        .VGA_SYNC_N(VGA_SYNC_N)
+    );
+
+endmodule

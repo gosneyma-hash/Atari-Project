@@ -1,0 +1,65 @@
+module ball_logic #(
+    parameter SCREEN_WIDTH = 640,
+    parameter SCREEN_HEIGHT = 480,
+    parameter BALL_SIZE = 6,
+    parameter PADDLE_WIDTH = 64,
+    parameter PADDLE_HEIGHT = 8
+)(
+    input  wire        clk,       // 50 MHz system clock
+    input  wire        rst,       // active-high reset
+    input  wire [9:0]  paddle_x,  // paddle left edge
+    input  wire [9:0]  paddle_y,  // paddle top edge
+    output reg  [9:0]  ball_x,    // ball x position
+    output reg  [9:0]  ball_y     // ball y position
+);
+
+    // velocity registers
+    reg signed [3:0] ball_dx, ball_dy;
+
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            // reset ball to center
+            ball_x  <= SCREEN_WIDTH/2;
+            ball_y  <= SCREEN_HEIGHT/2;
+            ball_dx <= 4'sd2;
+            ball_dy <= -4'sd2;
+        end else begin
+            // update position
+            ball_x <= ball_x + ball_dx;
+            ball_y <= ball_y + ball_dy;
+
+            // collision with left/right walls
+            if (ball_x <= 0) begin
+                ball_x  <= 0;
+                ball_dx <= -ball_dx;
+            end else if (ball_x + BALL_SIZE >= SCREEN_WIDTH) begin
+                ball_x  <= SCREEN_WIDTH - BALL_SIZE;
+                ball_dx <= -ball_dx;
+            end
+
+            // collision with top wall
+            if (ball_y <= 0) begin
+                ball_y  <= 0;
+                ball_dy <= -ball_dy;
+            end
+
+            // collision with paddle
+            if ((ball_y + BALL_SIZE >= paddle_y) &&
+                (ball_y + BALL_SIZE <= paddle_y + PADDLE_HEIGHT) &&
+                (ball_x + BALL_SIZE >= paddle_x) &&
+                (ball_x <= paddle_x + PADDLE_WIDTH)) begin
+                ball_dy <= -ball_dy; // bounce upward
+            end
+
+            // collision with bottom (missed paddle)
+            if (ball_y + BALL_SIZE >= SCREEN_HEIGHT) begin
+                // reset ball to center
+                ball_x  <= SCREEN_WIDTH/2;
+                ball_y  <= SCREEN_HEIGHT/2;
+                ball_dx <= 4'sd2;
+                ball_dy <= -4'sd2;
+            end
+        end
+    end
+
+endmodule
