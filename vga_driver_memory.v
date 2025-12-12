@@ -18,7 +18,6 @@ module vga_driver_memory (
     output wire VGA_VS
 );
 
-    // ... (parameters and other declarations stay the same)
     
     parameter SCREEN_WIDTH  = 640;
     parameter SCREEN_HEIGHT = 480;
@@ -261,6 +260,7 @@ module vga_driver_memory (
 	//	assign LEDR[9:0] = paddle_x[9:0];
 
 endmodule
+
 
 
 
