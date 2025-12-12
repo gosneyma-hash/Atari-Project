@@ -19,7 +19,8 @@ Lose State: the baground shifts colors to red upon losing giving the user imeadi
 
 # Design Description
   Reset state
-// image of initial reset state
+![IMG_6331](https://github.com/user-attachments/assets/76fc7e23-19e2-4ecb-a75e-90e95804f5f3)
+
   Our reset state sets everything up when you flip SW[1]. When you flip it to the off position the game begins.
 
 
@@ -50,20 +51,25 @@ Ball Logic
   At one point in time we had it so the ball wouldn’t go through the paddle. It was at a point where it would stay on top of the paddle unable to fall through it at any given time. 
 
 Brick logic
-// photo of the bricks
+
   We set our bricks up in 5 rows and 10 columns per row. We color coordinated each row to help the user know how far they have gotten in each column. The colors going from the very top to bottom are red, orange, yellow, green, and blue. 
-// photo of a couple of bricks being broken
+![IMG_6339](https://github.com/user-attachments/assets/f5c44afa-9363-432d-b6c2-6db3a9197222)
+
+
+
   We coded our bricks so once the ball collided with each individual brick, said brick would disappear. We also added a brick counter which kept track of how many of the fifty initial bricks were left. After all of the bricks were gone the win state was supposed to be activated.
 
 
 
 Lose State
-// image of lose state
+
+![IMG_2186](https://github.com/user-attachments/assets/f3f84a9d-5751-4055-9b9c-973ecf756db0)
+
 For our game we implemented a simple lose state where once you lost the screen would go red leaving the paddle and bricks in the lost position and condition they were last in.
 
 
 # Results 
-// photo of ball in the corner with a line of bricks broken
+
 In the end we managed to successfully set up and have paddle movement that moved cleaning throughout the screen and stayed in bounds of the screen at all times. We also had all of our bricks in nice clean rows and they would disappear when they made contact with the ball. Our lose state also worked flawlessly ending the game after the ball went past the paddle. We had a reset state which when switch one was flipped on would reset all the bricks and center the paddle and the ball. 
 
 
