@@ -12,3 +12,7 @@ Paddle: the paddle is white so as to draw the users eye with its sharp contrast 
 Ball: the ball is white to help indicate that the user can interact with it through the paddle as well as being an easy color to track visually.
 
 Lose State: the baground shifts colors to red upon losing giving the user imeadiate feed back upon the fact that the game has concluded in a loss.
+
+
+# Credits
+The 
