@@ -1,6 +1,8 @@
 # FPGA Atari Project
   This is an implementation of the Atari breakout game that was implemented on a DE1-SoC FPGA development board. It was coded through the Verilog scripting language and provides users with a display as well as physical controls through the buttons and the switches on the board.
 # Visual implementations
+Display: 
+
 Background: the dark blue baground gives a nice contrast to the other objects required for play allowing for a cleaner look.
 
 Blocks: each row of blocks has a seaperate color from those surrounding them to better help the user distiquish progress through row destruction.
