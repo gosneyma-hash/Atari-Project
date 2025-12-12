@@ -18,4 +18,4 @@ Lose State: the baground shifts colors to red upon losing giving the user imeadi
 The vga_driver file was obtained from Dr. Peter Jaimison and his project code files that he provided.
 
 # AI-Usage
-Disclosure that ai was used during the fixing of syntax errors and through sum bug fixing but all user functions as well as design decisions, such as block implementations in the vga_driver_memory, were through the lense of the Authors Mitchell and Marshall Gosney.
+Disclosure that AI was used during the fixing of syntax errors and through sum bug fixing but all user functions as well as design decisions, such as block implementations in the vga_driver_memory, were through the lense of the Authors Mitchell and Marshall Gosney.
