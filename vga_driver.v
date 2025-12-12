@@ -22,25 +22,24 @@ output reg active_pixels, // is on when we're in the active draw space
 output reg [9:0]xPixel, // current x
 output reg [9:0]yPixel, // current y - 10 bits = 1024 ... a little bit more than we need
 
-output reg VGA_BLANK_N,	//	VGA BLANK = !BLANK Composite Blank Control Input (TTL Compatible). A Logic 0 on this control input drives the analog outputs, IOR, IOB, and IOG, to  the blanking level.  The  BLANK  signal is latched on the rising edge  of CLOCK.  While BLANK  is a Logic 0, the R0 to  R9, G0  to  G9, and B0 to  B9 pixel inputs are  ignored. 
+output reg VGA_BLANK_N,	//	VGA BLANK 
 
-output reg VGA_SYNC_N		//	VGA SYNC = !SYNC Composite Sync Control Input (TTL Compatible). A Logic 0 on the  SYNC source.  This is internally connected to  the IOG analog output.  SYNC  input switches off a 40 IRE current  does  not override any other control  or data input; therefore, it should only be asserted during the blanking interval.  SYNC edge of CLOCK.  If  sync information is not required  on the green channel, the  SYNC Logic  0. 
+output reg VGA_SYNC_N		//	VGA SYNC
 );
 
-//Timings from https://timetoexplore.net/blog/video-timings-vga-720p-1080p
-// 640 by 480
+
 
 // horizontal timings
 parameter HA_END = 10'd639;           // end of active pixels
 parameter HS_STA = HA_END + 16;   // sync starts after front porch
 parameter HS_END = HS_STA + 96;   // sync ends
-parameter WIDTH   = 10'd799;           // last pixel on line (after back porch)
+parameter WIDTH   = 10'd799;           // last pixel on line 
 
 // vertical timings
 parameter VA_END = 10'd479;           // end of active pixels
 parameter VS_STA = VA_END + 10;   // sync starts after front porch
 parameter VS_END = VS_STA + 2;    // sync ends
-parameter HEIGHT = 10'd524;           // last line on screen (after back porch)
+parameter HEIGHT = 10'd524;           // last line on screen
 
 always @(*)
 begin 
@@ -87,3 +86,4 @@ begin
 end
 
 endmodule
+
