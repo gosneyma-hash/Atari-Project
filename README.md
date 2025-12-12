@@ -19,8 +19,8 @@ Lose State: the baground shifts colors to red upon losing giving the user imeadi
 
 # Design Description
   Reset state
-![IMG_6331](https://github.com/user-attachments/assets/76fc7e23-19e2-4ecb-a75e-90e95804f5f3)
 
+![IMG_2195](https://github.com/user-attachments/assets/590b6d7b-bddb-46f3-8d3d-8bdb1b978e9a)
   Our reset state sets everything up when you flip SW[1]. When you flip it to the off position the game begins.
 
 
