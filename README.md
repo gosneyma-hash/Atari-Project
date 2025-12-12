@@ -26,8 +26,8 @@ Lose State: the baground shifts colors to red upon losing giving the user imeadi
 
 
 Paddle logic 
-// TAB IT IN 
-// paddle in the center
+![IMG_6330](https://github.com/user-attachments/assets/fc215a28-fd15-4bef-b5d8-58dfffb56c09)
+
   We had our positioning set up so when the game was in the restart stage the paddle would be in the direct center of the screen. We were able to do this by utilizing the formula: (SCREEN_WIDTH - PADDLE_WIDTH) / 2. This code allowed our  paddle to always be centered in the beginning of the game. We had the paddle move at a constant speed in either direction when the buttons were being pressed. It kept moving at the same speed until the button stopped being pressed or if it hit either of the walls that it was bound to.
 
 
@@ -38,11 +38,13 @@ Paddle logic
 When neither of the buttons were being pressed down we had the next state point towards the idle state. This allowed the paddle to stay in the exact position that it was left in and so the paddle didn’t move constantly around the x axis of the screen. 
 
 Ball Logic
-// photo of the ball in the top of the screen 
+
+![IMG_6329](https://github.com/user-attachments/assets/2fccc07e-df8c-47ea-874a-824b43098674)
+
   We coded the ball so it would move at a constant speed in the x and y direction. We have the ball coded so it stays in bounds of the screen on all sides except the bottom because if it goes past the paddle the ball disappears and the lose state is activated. 
 
+![IMG_6331](https://github.com/user-attachments/assets/76fc7e23-19e2-4ecb-a75e-90e95804f5f3)
 
-// photo of the ball on the paddle
   At one point in time we had it so the ball wouldn’t go through the paddle. It was at a point where it would stay on top of the paddle unable to fall through it at any given time. 
 
 Brick logic
