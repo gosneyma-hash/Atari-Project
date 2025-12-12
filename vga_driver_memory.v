@@ -128,7 +128,7 @@ module vga_driver_memory (
     // Color output logic
     reg [23:0] vga_color;
    
-    // Brick detection signals for each brick
+	// Brick detection signals for each brick (Row 1)
     wire in_brick_00 = brick_state[0]  && (x >= 10'd0)   && (x < 10'd64)  && (y >= 10'd0)  && (y < 10'd16);
     wire in_brick_01 = brick_state[1]  && (x >= 10'd64)  && (x < 10'd128) && (y >= 10'd0)  && (y < 10'd16);
     wire in_brick_02 = brick_state[2]  && (x >= 10'd128) && (x < 10'd192) && (y >= 10'd0)  && (y < 10'd16);
@@ -139,7 +139,8 @@ module vga_driver_memory (
     wire in_brick_07 = brick_state[7]  && (x >= 10'd448) && (x < 10'd512) && (y >= 10'd0)  && (y < 10'd16);
     wire in_brick_08 = brick_state[8]  && (x >= 10'd512) && (x < 10'd576) && (y >= 10'd0)  && (y < 10'd16);
     wire in_brick_09 = brick_state[9]  && (x >= 10'd576) && (x < 10'd640) && (y >= 10'd0)  && (y < 10'd16);
-   
+
+	//(Row 2)
     wire in_brick_10 = brick_state[10] && (x >= 10'd0)   && (x < 10'd64)  && (y >= 10'd16) && (y < 10'd32);
     wire in_brick_11 = brick_state[11] && (x >= 10'd64)  && (x < 10'd128) && (y >= 10'd16) && (y < 10'd32);
     wire in_brick_12 = brick_state[12] && (x >= 10'd128) && (x < 10'd192) && (y >= 10'd16) && (y < 10'd32);
@@ -150,7 +151,8 @@ module vga_driver_memory (
     wire in_brick_17 = brick_state[17] && (x >= 10'd448) && (x < 10'd512) && (y >= 10'd16) && (y < 10'd32);
     wire in_brick_18 = brick_state[18] && (x >= 10'd512) && (x < 10'd576) && (y >= 10'd16) && (y < 10'd32);
     wire in_brick_19 = brick_state[19] && (x >= 10'd576) && (x < 10'd640) && (y >= 10'd16) && (y < 10'd32);
-   
+
+	//(Row 3)
     wire in_brick_20 = brick_state[20] && (x >= 10'd0)   && (x < 10'd64)  && (y >= 10'd32) && (y < 10'd48);
     wire in_brick_21 = brick_state[21] && (x >= 10'd64)  && (x < 10'd128) && (y >= 10'd32) && (y < 10'd48);
     wire in_brick_22 = brick_state[22] && (x >= 10'd128) && (x < 10'd192) && (y >= 10'd32) && (y < 10'd48);
@@ -161,7 +163,8 @@ module vga_driver_memory (
     wire in_brick_27 = brick_state[27] && (x >= 10'd448) && (x < 10'd512) && (y >= 10'd32) && (y < 10'd48);
     wire in_brick_28 = brick_state[28] && (x >= 10'd512) && (x < 10'd576) && (y >= 10'd32) && (y < 10'd48);
     wire in_brick_29 = brick_state[29] && (x >= 10'd576) && (x < 10'd640) && (y >= 10'd32) && (y < 10'd48);
-   
+
+	//(Row 4)
     wire in_brick_30 = brick_state[30] && (x >= 10'd0)   && (x < 10'd64)  && (y >= 10'd48) && (y < 10'd64);
     wire in_brick_31 = brick_state[31] && (x >= 10'd64)  && (x < 10'd128) && (y >= 10'd48) && (y < 10'd64);
     wire in_brick_32 = brick_state[32] && (x >= 10'd128) && (x < 10'd192) && (y >= 10'd48) && (y < 10'd64);
@@ -172,7 +175,8 @@ module vga_driver_memory (
     wire in_brick_37 = brick_state[37] && (x >= 10'd448) && (x < 10'd512) && (y >= 10'd48) && (y < 10'd64);
     wire in_brick_38 = brick_state[38] && (x >= 10'd512) && (x < 10'd576) && (y >= 10'd48) && (y < 10'd64);
     wire in_brick_39 = brick_state[39] && (x >= 10'd576) && (x < 10'd640) && (y >= 10'd48) && (y < 10'd64);
-   
+
+	//(Row 5)
     wire in_brick_40 = brick_state[40] && (x >= 10'd0)   && (x < 10'd64)  && (y >= 10'd64) && (y < 10'd80);
     wire in_brick_41 = brick_state[41] && (x >= 10'd64)  && (x < 10'd128) && (y >= 10'd64) && (y < 10'd80);
     wire in_brick_42 = brick_state[42] && (x >= 10'd128) && (x < 10'd192) && (y >= 10'd64) && (y < 10'd80);
@@ -257,5 +261,6 @@ module vga_driver_memory (
 	//	assign LEDR[9:0] = paddle_x[9:0];
 
 endmodule
+
 
 
