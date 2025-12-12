@@ -20,14 +20,12 @@ Lose State: the baground shifts colors to red upon losing giving the user imeadi
 # Design Description
   Reset state
 
-![IMG_2195](https://github.com/user-attachments/assets/590b6d7b-bddb-46f3-8d3d-8bdb1b978e9a)
   Our reset state sets everything up when you flip SW[1]. When you flip it to the off position the game begins.
 
-
+![IMG_2195](https://github.com/user-attachments/assets/590b6d7b-bddb-46f3-8d3d-8bdb1b978e9a)
 
 
 Paddle logic 
-![IMG_6330](https://github.com/user-attachments/assets/fc215a28-fd15-4bef-b5d8-58dfffb56c09)
 
   We had our positioning set up so when the game was in the restart stage the paddle would be in the direct center of the screen. We were able to do this by utilizing the formula: (SCREEN_WIDTH - PADDLE_WIDTH) / 2. This code allowed our  paddle to always be centered in the beginning of the game. We had the paddle move at a constant speed in either direction when the buttons were being pressed. It kept moving at the same speed until the button stopped being pressed or if it hit either of the walls that it was bound to.
 
