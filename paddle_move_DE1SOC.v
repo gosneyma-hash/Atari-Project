@@ -20,8 +20,8 @@ module paddle_move_DE1SOC #(
     localparam [15:0] START_X = (SCREEN_WIDTH - PADDLE_WIDTH) / 2;
 
     // FSM states
-    localparam IDLE       = 2'b00;
-    localparam MOVE_LEFT  = 2'b01;
+    localparam IDLE = 2'b00;
+    localparam MOVE_LEFT = 2'b01;
     localparam MOVE_RIGHT = 2'b10;
 
     reg [1:0] state, next_state;
@@ -32,7 +32,7 @@ module paddle_move_DE1SOC #(
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            state     <= IDLE;
+            state    <= IDLE;
             paddle_x  <= START_X;
             div       <= 23'd0;
         end else if (!lose) begin
@@ -78,3 +78,4 @@ module paddle_move_DE1SOC #(
     end
 
 endmodule
+
