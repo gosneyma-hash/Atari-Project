@@ -49,7 +49,7 @@ module vga_driver_memory (
     wire signed [2:0] ball_vx, ball_vy;
     wire brick_hit, hit_from_side;
 	 wire all_bricks_gone = (brick_state == 50'd1); // 50
-    // VGA Driver (unchanged)
+
     vga_driver the_vga (
         .clk(clk),
         .rst(1'b1),
@@ -63,7 +63,7 @@ module vga_driver_memory (
         .VGA_SYNC_N(VGA_SYNC_N)
     );
 
-    // Paddle Controller (unchanged)
+
     paddle_move_DE1SOC #(
         .SCREEN_WIDTH(SCREEN_WIDTH),
         .SCREEN_HEIGHT(SCREEN_HEIGHT),
@@ -80,7 +80,7 @@ module vga_driver_memory (
         .lose(lose)
     );
 
-    // Ball Logic - UPDATED with brick collision inputs
+
     ball_logic #(
         .SCREEN_WIDTH(SCREEN_WIDTH),
         .SCREEN_HEIGHT(SCREEN_HEIGHT),
@@ -103,7 +103,6 @@ module vga_driver_memory (
 		  .win(win)
     );
 
-    // Brick Logic - UPDATED with velocity inputs
     brick_logic #(
         .SCREEN_WIDTH(SCREEN_WIDTH),
         .SCREEN_HEIGHT(SCREEN_HEIGHT),
@@ -258,3 +257,4 @@ module vga_driver_memory (
 	//	assign LEDR[9:0] = paddle_x[9:0];
 
 endmodule
+
