@@ -1,5 +1,9 @@
 # FPGA Atari Project
   This is an implementation of the Atari breakout game that was implemented on a DE1-SoC FPGA development board. It was coded through the Verilog scripting language and provides users with a display as well as physical controls through the buttons and the switches on the board.
+
+# How to Play
+  Playing is simple start by making sure the reset switch (sw[1]) is flipped into the off position. Next you will be able to move the paddle to the edges of the screen without going past it. To do this use the buttons on the board button 1 (Key[1]) moves the paddle right and button 2 (Key[0]) moves the paddle left. If the ball collides with the block it will be removed from the screen when all blocks are gone you win. However if the ball gose off the screen you will lose causeing you to have to use the reset switch as stated before losing is indicated through the background changing colors to red.  
+
 # Visual implementations
 Display: The visual screen display is 640x480 giving the user a clear picture of all objects at once.
 
