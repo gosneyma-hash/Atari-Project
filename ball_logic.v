@@ -6,12 +6,12 @@
     parameter PADDLE_HEIGHT = 8,
     parameter SPEED_DIV     = 23'd1_000_000  // ~50 Hz
 )(
-    input  wire       clk,
-    input  wire       rst,
+    input  wire clk,
+    input  wire rst,
     input  wire [9:0] paddle_x,
     input  wire [9:0] paddle_y,
-    input  wire       brick_hit,
-    input  wire       hit_from_side,
+    input  wire brick_hit,
+    input  wire hit_from_side,
 	 input wire all_bricks_gone,
     output reg  [9:0] ball_x,
     output reg  [9:0] ball_y,
@@ -147,4 +147,5 @@ endmodule
 
 
  
+
 
