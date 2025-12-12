@@ -17,7 +17,7 @@ Ball: the ball is white to help indicate that the user can interact with it thro
 
 Lose State: the baground shifts colors to red upon losing giving the user imeadiate feed back upon the fact that the game has concluded in a loss.
 
-# Design Description // add photos and videos in each section
+# Design Description
   Reset state
 // image of initial reset state
   Our reset state sets everything up when you flip SW[1]. When you flip it to the off position the game begins.
@@ -31,9 +31,11 @@ Paddle logic
   We had our positioning set up so when the game was in the restart stage the paddle would be in the direct center of the screen. We were able to do this by utilizing the formula: (SCREEN_WIDTH - PADDLE_WIDTH) / 2. This code allowed our  paddle to always be centered in the beginning of the game. We had the paddle move at a constant speed in either direction when the buttons were being pressed. It kept moving at the same speed until the button stopped being pressed or if it hit either of the walls that it was bound to.
 
 
-// ABOVE A PHOTO OF THE PADDLE LEFT OF MIDDLE
+![IMG_6337](https://github.com/user-attachments/assets/006985da-d90b-4c82-91c8-689ab4f2658d)
+
   For our paddle we connected the movement to the DE1-SOC FPGA development board. Using the code: if (!KEY[1]) – next_state  = MOVE_LEFT; allowed us to have KEY[1] be connected to the left movement of the paddle. 
- // ABOVE A PHOTO OF THE PADDLE RIGHT OF MIDDLE
+![IMG_6338](https://github.com/user-attachments/assets/e91585fa-6c32-4888-90b8-a8250f533720)
+
   To have our paddle move right we used: else if (!KEY[0]) – next_state = MOVE_RIGHT;. This allowed Key[0] to move the paddle right when the button was activated. 
 When neither of the buttons were being pressed down we had the next state point towards the idle state. This allowed the paddle to stay in the exact position that it was left in and so the paddle didn’t move constantly around the x axis of the screen. 
 
