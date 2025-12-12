@@ -48,7 +48,7 @@ module vga_driver_memory (
     // Declare the missing signals
     wire signed [2:0] ball_vx, ball_vy;
     wire brick_hit, hit_from_side;
-	 wire all_bricks_gone = (brick_state == 50'd1); // 50
+	wire all_bricks_gone = (brick_state == 50'd0); // 50
 
     vga_driver the_vga (
         .clk(clk),
@@ -257,4 +257,5 @@ module vga_driver_memory (
 	//	assign LEDR[9:0] = paddle_x[9:0];
 
 endmodule
+
 
